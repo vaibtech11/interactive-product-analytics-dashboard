@@ -18,9 +18,12 @@ const corsOptions = {
     "http://localhost:3000",
     "https://interactive-product-analytics-dashboa.netlify.app"
   ],
-  credentials: true,
-  optionsSuccessStatus: 200
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"],
+  credentials: true
 };
+
+app.use(cors(corsOptions));
 
 // Middleware
 app.use(cors(corsOptions));
