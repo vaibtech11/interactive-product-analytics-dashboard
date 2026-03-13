@@ -14,13 +14,12 @@ const PORT = process.env.PORT || 5000;
 
 // CORS Configuration - Security Best Practice
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || process.env.NODE_ENV === 'production' 
-    ? ['https://your-app.netlify.app', 'http://localhost:3000']
-    : '*',
+  origin: [
+    "http://localhost:3000",
+    "https://interactive-product-analytics-dashboa.netlify.app"
+  ],
   credentials: true,
-  optionsSuccessStatus: 200,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  optionsSuccessStatus: 200
 };
 
 // Middleware
