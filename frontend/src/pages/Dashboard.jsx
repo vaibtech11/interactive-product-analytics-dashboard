@@ -157,11 +157,22 @@ function Dashboard() {
             </div>
 
             <div className="bg-white shadow-sm rounded-xl p-6 hover:shadow-md transition-shadow">
-              <h2 className="text-xl font-semibold mb-4">
-                {selectedFeature ? `Clicks Over Time - ${selectedFeature}` : 'Clicks Over Time'}
-              </h2>
-              <LineChart data={lineChartData} selectedFeature={selectedFeature} />
-            </div>
+  <h2 className="text-xl font-semibold mb-4">
+    {selectedFeature ? `Clicks Over Time - ${selectedFeature}` : 'Clicks Over Time'}
+  </h2>
+
+  {!selectedFeature ? (
+    <div className="text-center py-12 text-gray-500">
+      Click a bar in the chart to view feature usage over time.
+    </div>
+  ) : lineChartData.length === 0 ? (
+    <div className="text-center py-12 text-gray-500">
+      No data available for this feature in the selected range.
+    </div>
+  ) : (
+    <LineChart data={lineChartData} selectedFeature={selectedFeature} />
+  )}
+</div>
           </div>
         )}
       </main>
