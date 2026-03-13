@@ -253,4 +253,4 @@ See [SECURITY.md](SECURITY.md) for detailed security documentation.
 
 ## Scaling the Analytics System
 
-If the dashboard needed to handle 1 million write-events per minute, the architecture would move to an event-driven pipeline. Instead of writing events directly to PostgreSQL, the backend would publish interaction events to a message queue such as Apache Kafka or RabbitMQ. Worker services would consume these events asynchronously and batch-write them into an analytics-optimized database such as ClickHouse, BigQuery, or a partitioned PostgreSQL cluster. This architecture separates ingestion from storage, increases write throughput, and allows the system to scale horizontally while keeping dashboard queries fast.
+To improve performance for higher event volumes, the database uses indexes on feature_name, timestamp, and user_id so that aggregation queries and filters run efficiently. If the system needed to handle significantly higher write traffic, events could also be inserted in batches instead of single writes, which reduces database overhead and improves throughput while still using PostgreSQL as the analytics store.
